@@ -6,6 +6,9 @@ import Pets from './pages/pets/index.jsx';
 import Account from './pages/account/index.jsx';
 import Nav from './Navigation.js'
 import './App.css';
+import Shelter from "./pages/shelter";
+import NotFoundPage from "./pages/404page";
+
 function App() {
   return (
       <>
@@ -13,10 +16,12 @@ function App() {
               <Nav>
               </Nav>
               <Routes path="/">
-                  <Route index element={<Landing />} />
-                  <Route path="/login" element={<Login />} />
-                  <Route path="/pets" element={<Pets />} />
-                  <Route path="/account" element={<Account />} />
+                  <Route path="/" element={<Landing />} />
+                  <Route path="login" element={<Login />} />
+                  <Route path="pets" element={<Pets />} />
+                  <Route path="account" element={<Account />} />
+                  <Route path="shelter" element={<Shelter />} />
+                  <Route path="*" element={<NotFoundPage />} />
               </Routes>
           </BrowserRouter>
       </>
