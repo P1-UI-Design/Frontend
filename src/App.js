@@ -5,6 +5,7 @@ import Login from './pages/login/index.jsx';
 import Pets from './pages/pets/index.jsx';
 import Account from './pages/account/index.jsx';
 import Nav from './Navigation.js'
+import './App.css';
 function App() {
   return (
       <>
