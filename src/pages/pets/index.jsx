@@ -8,17 +8,16 @@ import axios from "axios";
 import {wait} from "@testing-library/user-event/dist/utils";
 
 function Pets() {
-    const handleScroll = () => {
-        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
-
-        // if (bottom)
-            alert("sdjnansjdn");
-    }
-
-    React.useEffect(() => {
-        window.addEventListener('scroll', handleScroll, {
-            passive: true
-        })});
+    // const handleScroll = () => {
+    //     const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+    //     if (bottom)
+    //         alert("sdjnansjdn");
+    // }
+    //
+    // React.useEffect(() => {
+    //     window.addEventListener('scroll', handleScroll, {
+    //         passive: true
+    //     })});
 
     const petsData = [
         {
@@ -66,21 +65,15 @@ function Pets() {
     })
 
     function getItems(){
-        return axios.get("http://127.0.0.1:8000/pets/search?",
-            {
-                params: {
-                    page: 1,
-                    status: "all"
-                }
-            }).then(res => res.data)
+        return axios.get("http://127.0.0.1:8000/pets/").then(res => res.data)
     }
     if(itemsQuery.isLoading) return <h1>Loading...</h1>
-    if(itemsQuery.status === "error") return <h1>Error... Have you started the backend?</h1>
+    if(itemsQuery.isError) return <h1>Error... Have you started the backend?</h1>
 
     return (
         <div className="pets-page">
             <div className="main-content">
-                <Cards data={itemsQuery.data.results}/>
+                <Cards data={itemsQuery["data"]["data"]["list"]}/>
                 <SideBar/>
             </div>
         </div>

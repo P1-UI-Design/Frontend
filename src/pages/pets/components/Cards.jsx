@@ -9,6 +9,8 @@ function Cards({ data }) {
                     key={item.id}
                     title={item.name}
                     description={item.description}
+                    age={item.age}
+                    gender={item.gender}
                     imageUrl={"https://placekitten.com/300/200"}
                 />
             ))}
