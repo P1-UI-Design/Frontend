@@ -1,0 +1,78 @@
+.auth-form-container {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.auth-form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.auth-form h2 {
+  text-align: center;
+  color: #333;
+}
+
+.auth-form div {
+  margin-bottom: 15px;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 5px;
+  color: #666;
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.auth-form button {
+  width: 100%;
+  background-color: transparent;
+  border: 1px solid black;
+  color: grey;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 20px auto;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.auth-form button:hover {
+  background-color: grey;
+}
+
+.parent-container {
+  text-align: center;
+  padding-top: 50px;
+}
+
+.toggle-button {
+  background-color: transparent;
+  border: 1px solid black;
+  color: grey;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 20px auto;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.toggle-button:hover {
+  background-color: grey;
+  color: white;
+}
