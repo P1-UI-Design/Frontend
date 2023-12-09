@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Landing from './pages/landing/index.jsx';
 import Login from './pages/login/index.jsx';
 import Pets from './pages/pets/index.jsx';
@@ -8,6 +8,7 @@ import Nav from './Navigation.js'
 import './App.css';
 import Shelter from "./pages/shelter";
 import NotFoundPage from "./pages/404page";
+import Notification from "./pages/notification";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
                   <Route path="pets" element={<Pets />} />
                   <Route path="account" element={<Account />} />
                   <Route path="shelter" element={<Shelter />} />
+                  <Route path="notification" element={<Notification />} />
                   <Route path="*" element={<NotFoundPage />} />
               </Routes>
           </BrowserRouter>

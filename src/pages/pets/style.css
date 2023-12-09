@@ -1,21 +1,26 @@
-.main-content {
-    display: flex;
-    justify-content: space-between;
+.pets-page {
+    padding: 20px;
 }
 
 
+.main-content {
 
+    display: flex;
+    justify-content: center;
+}
+a {
+    color: white;
+    text-decoration: none;
 
-
+}
 
 
 .card {
-    border: 1px solid grey;
+    border: 1px solid black;
     border-radius: 16px;
     overflow: hidden;
-    margin: 10px;
-    width: 250px;
-    background-color: black;
+    width: 200px;
+    background-color: rgb(10, 10, 10);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
@@ -35,11 +40,9 @@
 }
 
 .card-content {
-    padding: 16px;
 }
 
 .card-title {
-    margin-top: 0;
     font-size: 1.5rem;
 }
 
@@ -47,35 +50,30 @@
     font-size: 1rem;
 }
 
-.pets-page {
-    padding: 20px;
-}
-
 .card-container {
     flex-grow: 1;
     display: flex;
     flex-wrap: wrap;
     /*justify-content: flex-start;*/
-    gap: 20px;
+    gap: 30px;
 }
 
 
 
 .sidebar {
-    width: 250px;
-    padding: 20px;
-    background-color: #f0f0f0;
+    width: 300px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .search-bar {
-    margin-bottom: 20px;
+    width: 100%;
+
 }
 
 .search-bar input {
-    width: 100%;
+    width: 90%;
     padding: 8px;
-    margin-right: 8px;
+    border-radius: 16px;
 }
 
 .search-bar button {

@@ -1,6 +1,10 @@
 import React from 'react';
 export { ShelterInfo };
 const ShelterInfo = ({ shelterName, shelterDescription }) => {
+    function onRatingSubmit(number) {
+        
+    }
+
     const handleLike = () => {
         onRatingSubmit(1);
     };

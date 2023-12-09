@@ -1,14 +1,14 @@
 import React from 'react';
 
-function Card({ title, description, imageUrl, onClick }) {
+function Card({ title, description, imageUrl }) {
     return (
-        <a href="#" className="card" onClick={onClick}>
+        <div className="card">
             <img src={imageUrl} alt={title} className="card-image" />
             <div className="card-content">
                 <h2 className="card-title">{title}</h2>
                 <p className="card-description">{description}</p>
             </div>
-        </a>
+        </div>
     );
 }
 

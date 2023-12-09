@@ -19,6 +19,12 @@ function Nav() {
                 <li className={`nav-item ${location.pathname === '/account' ? 'active' : ''}`}>
                     <Link to="/account">Account</Link>
                 </li>
+                <li className={`nav-item ${location.pathname === '/shelter' ? 'active' : ''}`}>
+                    <Link to="/shelter">Shelter</Link>
+                </li>
+                <li className={`nav-item ${location.pathname === '/notification' ? 'active' : ''}`}>
+                    <Link to="/notification">Notification</Link>
+                </li>
             </ul>
         </nav>
     );
