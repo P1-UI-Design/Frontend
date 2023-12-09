@@ -1,37 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { ShelterInfo } from './components/shelterInfo';
+import { PetsGrid } from './components/petsGrid';
 
-const ShelterPage = ({ shelterInfo, petsList }) => {
-    const handleRatingSubmit = (rating) => {
-        // Placeholder function to handle rating submission
-        console.log('Rating submitted:', rating);
+
+
+const ShelterPage = () => {
+    const [shelterData, setShelterData] = useState({ name: '', description: '' });
+    const [pets, setPets] = useState([]);
+
+    let requestUrl = 'http://127.0.0.1:8000/accounts/' + 1;
+
+    // Function to handle rating submission
+    const onRatingSubmit = (ratingValue) => {
+        console.log('Rating submitted:', ratingValue);
     };
 
-    const applyForPet = (petId) => {
-        // Placeholder function for applying for a pet
-        console.log('Apply for pet:', petId);
-    };
+    // Fetching shelter information
+    useEffect(() => {
+        fetch(requestUrl)
+            .then(response => response.json())
+            .then(data => setShelterData({
+                name: data.name,
+                description: data.description
+            }));
+    }, [requestUrl]);
+
+    // Fetching pets listing
+    useEffect(() => {
+        fetch(requestUrl)
+            .then(response => response.json())
+            .then(data => setPets(data.list));
+    }, [requestUrl]);
 
     return (
-        <div className="shelter-page">
-            <section className="shelter-info">
-                <div className="shelter-name">{shelterInfo.name}</div>
-                <div className="shelter-rating">
-                    {/* Implement your rating system here */}
-                    <input type="number" onChange={(e) => handleRatingSubmit(e.target.value)} />
-                </div>
-                <div className="shelter-description">{shelterInfo.description}</div>
-            </section>
-
-            <section className="pet-list">
-                {petsList.map(pet => (
-                    <div key={pet.id} className="pet-box">
-                        <img src={pet.profilePicture} alt={pet.name} />
-                        <div className="pet-name">{pet.name}</div>
-                        <div className="pet-description">{pet.description}</div>
-                        <button onClick={() => applyForPet(pet.id)}>Apply for this Pet</button>
-                    </div>
-                ))}
-            </section>
+        <div>
+            <ShelterInfo
+                shelterName={shelterData.name}
+                shelterDescription={shelterData.description}
+                onRatingSubmit={onRatingSubmit}
+            />
+            <PetsGrid pets={pets} />
         </div>
     );
 };
