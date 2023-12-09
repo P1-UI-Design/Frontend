@@ -7,6 +7,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [image, setImage] = useState(null);
+  const [description, setDescription] = useState("");
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -78,6 +79,14 @@ const Register = () => {
           />
         </div>
       )}
+      <div>
+        <label>Description:</label>
+        <input
+          type="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
+      </div>
       <button type="seeker-submit">Seeker Register</button>
       <button type="shelter-submit">Shelter Register</button>
     </form>
