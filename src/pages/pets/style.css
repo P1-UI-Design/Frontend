@@ -1,0 +1,88 @@
+.main-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+
+
+
+
+.card {
+    border: 1px solid grey;
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 10px;
+    width: 250px;
+    background-color: black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    background-color: white;
+    color: black;
+    border-color: white;
+}
+
+
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 16px;
+}
+
+.card-title {
+    margin-top: 0;
+    font-size: 1.5rem;
+}
+
+.card-description {
+    font-size: 1rem;
+}
+
+.pets-page {
+    padding: 20px;
+}
+
+.card-container {
+    flex-grow: 1;
+    display: flex;
+    flex-wrap: wrap;
+    /*justify-content: flex-start;*/
+    gap: 20px;
+}
+
+
+
+.sidebar {
+    width: 250px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    width: 100%;
+    padding: 8px;
+    margin-right: 8px;
+}
+
+.search-bar button {
+    padding: 8px;
+}
+
+.search-options,
+.filter-options {
+    /* Add styles for search and filter options */
+}
