@@ -1,0 +1,17 @@
+.profile-container {
+    max-width: 100%;
+}
+
+.slide-container {
+    max-width: 60%;
+    height: 80%;
+    margin: auto;
+
+}
+
+.info-container {
+    max-width: 60%;
+    width: 80%;
+    margin: auto;
+
+}

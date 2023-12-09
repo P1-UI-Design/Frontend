@@ -7,9 +7,9 @@ function Cards({ data }) {
             {data.map((item) => (
                 <Card
                     key={item.id}
-                    title={item.title}
+                    title={item.name}
                     description={item.description}
-                    imageUrl={item.imageUrl}
+                    imageUrl={"https://placekitten.com/300/200"}
                 />
             ))}
         </div>

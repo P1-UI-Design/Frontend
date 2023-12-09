@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import "./AuthFormStyles.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (event) => {
+
+    const handleLogin = (event) => {
     event.preventDefault();
-    console.log("Login Attempt:", username, password);
+        navigate("/pets");
+
   };
 
   return (

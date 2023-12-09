@@ -7,12 +7,6 @@ function Nav() {
     return (
         <nav className="navbar">
             <ul className="nav-list">
-                <li className={`nav-item ${location.pathname === '/' ? 'active' : ''}`}>
-                    <Link to="/">Home</Link>
-                </li>
-                <li className={`nav-item ${location.pathname === '/login' ? 'active' : ''}`}>
-                    <Link to="/login">Login</Link>
-                </li>
                 <li className={`nav-item ${location.pathname === '/pets' ? 'active' : ''}`}>
                     <Link to="/pets">Pets</Link>
                 </li>

@@ -1,65 +1,86 @@
 import React from 'react';
-import './style.css';
+import './pets-style.css';
 import Cards from "./components/Cards";
 import SideBar from "./components/Sidebar"
 import {useQuery} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
+import axios from "axios";
+import {wait} from "@testing-library/user-event/dist/utils";
+
 function Pets() {
+    const handleScroll = () => {
+        const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+
+        // if (bottom)
+            alert("sdjnansjdn");
+    }
+
+    React.useEffect(() => {
+        window.addEventListener('scroll', handleScroll, {
+            passive: true
+        })});
+
     const petsData = [
         {
             id: 1,
-            title: 'Pet 1',
+            name: 'Pet 1',
             description: 'Description for Pet 1',
-            imageUrl: 'https://placekitten.com/300/200',
+            imageUrl: '',
         },
         {
             id: 2,
-            title: 'Pet 2',
+            name: 'Pet 2',
             description: 'Description for Pet 2',
             imageUrl: 'https://placekitten.com/300/200',
         },
         {
             id: 2,
-            title: 'Pet 2',
+            name: 'Pet 2',
             description: 'Description for Pet 2',
             imageUrl: 'https://placekitten.com/300/200',
         },
         {
             id: 2,
-            title: 'Pet 2',
+            name: 'Pet 2',
             description: 'Description for Pet 2',
             imageUrl: 'https://placekitten.com/300/200',
         },
         {
             id: 2,
-            title: 'Pet 2',
+            name: 'Pet 2',
             description: 'Description for Pet 2',
             imageUrl: 'https://placekitten.com/300/200',
         },
         {
             id: 2,
-            title: 'Pet 2',
+            name: 'Pet 2',
             description: 'Description for Pet 2',
             imageUrl: 'https://placekitten.com/300/200',
         },
     ];
-    // const navigate = useNavigate();
-    //
-    // const postQuery = useQuery({
-    //     queryKey: ["posts"],
-    //     queryFn: () => function () {
-    //
-    //     }
-    // })
-    // if(postQuery.isLoading) return <h1>Loading...</h1>;
-    // if(postQuery.isError) {
-    //     navigate("/")
-    // }
+    const navigate = useNavigate();
+
+    const itemsQuery = useQuery({
+        queryKey: ["pet-listings"],
+        queryFn: getItems
+    })
+
+    function getItems(){
+        return axios.get("http://127.0.0.1:8000/pets/search?",
+            {
+                params: {
+                    page: 1,
+                    status: "all"
+                }
+            }).then(res => res.data)
+    }
+    if(itemsQuery.isLoading) return <h1>Loading...</h1>
+    if(itemsQuery.status === "error") return <h1>Error... Have you started the backend?</h1>
 
     return (
         <div className="pets-page">
             <div className="main-content">
-                <Cards data={petsData} />
+                <Cards data={itemsQuery.data.results}/>
                 <SideBar/>
             </div>
         </div>

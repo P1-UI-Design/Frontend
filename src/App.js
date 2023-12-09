@@ -9,23 +9,26 @@ import './App.css';
 import Shelter from "./pages/shelter";
 import NotFoundPage from "./pages/404page";
 import Notification from "./pages/notification";
+import PetProfile from "./pages/pet-profile";
+import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 function App() {
   return (
       <>
           <BrowserRouter>
-              <Nav>
-              </Nav>
               <Routes path="/">
                   <Route path="/" element={<Landing />} />
                   <Route path="login" element={<Login />} />
-                  <Route path="pets" element={<Pets />} />
-                  <Route path="account" element={<Account />} />
-                  <Route path="shelter" element={<Shelter />} />
-                  <Route path="notification" element={<Notification />} />
+                  <Route path="pets" element={<><Nav/><Pets /></>} />
+                  <Route path="pets/pet" element={<><Nav/><PetProfile /></>} />
+                  <Route path="account" element={<><Nav/><Account /></>} />
+                  <Route path="shelter" element={<><Nav/><Shelter /></>} />
+                  <Route path="notification" element={<><Nav/><Notification /></>} />
                   <Route path="*" element={<NotFoundPage />} />
+                  <Route path="404" element={<NotFoundPage />} />
               </Routes>
           </BrowserRouter>
+          <ReactQueryDevtools></ReactQueryDevtools>
       </>
   );
 }
