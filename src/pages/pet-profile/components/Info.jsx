@@ -1,10 +1,12 @@
 import SlideShow from "./SlideShow";
 
-function Info(){
-    const pet = {
+function Info(pet){
+    console.log("ajsnjdsndd")
+    console.log(pet.pet)
+    const pet2 = {
         "id": 2,
-        "name": "Test Pet2",
-        "breed": "b",
+        "name": "what",
+        "breed": "ajsmd",
         "age": 1,
         "size": "small",
         "color": "brown",
@@ -24,18 +26,18 @@ function Info(){
                 <h1 className="profile-name">{pet.name}</h1>
             </div>
             <div className="profile-info">
-                <p>Breed: {pet.breed}</p>
-                <p>Age: {pet.age} years</p>
-                <p>Size: {pet.size}</p>
-                <p>Color: {pet.color}</p>
-                <p>Gender: {pet.gender}</p>
-                <p>Sterilized: {pet.sterilized ? 'Yes' : 'No'}</p>
-                <p>Description: {pet.description}</p>
-                <p>Status: {pet.status}</p>
-                <p>Publication Date: {new Date(pet.publication_date).toLocaleString()}</p>
-                <p>Traits: {pet.traits}</p>
-                <p>Special Needs: {pet.special_needs}</p>
-                <p>Shelter ID: {pet.shelter}</p>
+                <p>Breed: {pet.pet.breed}</p>
+                <p>Age: {pet.pet.age} years</p>
+                <p>Size: {pet.pet.size}</p>
+                <p>Color: {pet.pet.color}</p>
+                <p>Gender: {pet.pet.gender}</p>
+                <p>Sterilized: {pet.pet.sterilized ? 'Yes' : 'No'}</p>
+                <p>Description: {pet.pet.description}</p>
+                <p>Status: {pet.pet.status}</p>
+                <p>Publication Date: {new Date(pet.pet.publication_date).toLocaleString()}</p>
+                <p>Traits: {pet.pet.traits}</p>
+                <p>Special Needs: {pet.pet.special_needs}</p>
+                <p>Shelter ID: {pet.pet.shelter}</p>
             </div>
         </div>
     );

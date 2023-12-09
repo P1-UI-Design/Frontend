@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Card({ title, age, gender, description, imageUrl, onClick }) {
+function Card({ title, age, gender, description, imageUrl, onClick, id }) {
     return (
-        <a href="/pets/pet" className="card" onClick={onClick}>
+        <a href={"/pets/pet/" + id.toString()} className="card" onClick={onClick}>
             <img src={imageUrl} alt={title} className="card-image" />
             <div className="card-content">
                 <h2 className="card-title">{title}</h2>

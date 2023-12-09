@@ -2,8 +2,11 @@ import React from 'react';
 import "./style.css";
 import SlideShow from "./components/SlideShow";
 import Info from "./components/Info";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
 
 function PetProfile(){
+    const id = window.location.href.split("/").pop();
     const imgs = [
         {
             title: 'Pet 2',
@@ -15,6 +18,17 @@ function PetProfile(){
         },
     ];
 
+    const itemsQuery = useQuery({
+        queryKey: ["pet", id],
+        queryFn: getItems
+    })
+
+    function getItems(){
+        return axios.get("http://127.0.0.1:8000/pets/"+id).then(res => res.data)
+    }
+    if(itemsQuery.isLoading) return <h1>Loading...</h1>
+    if(itemsQuery.isError) return <h1>Error... Have you started the backend?</h1>
+    console.log(itemsQuery.data["data"])
     return (
         <div className="profile-container">
             <link
@@ -32,7 +46,7 @@ function PetProfile(){
                 <SlideShow  data={imgs}/>
             </div>
             <div className="info-container">
-                <Info></Info>
+                <Info pet={itemsQuery.data["data"]}></Info>
             </div>
 
         </div>

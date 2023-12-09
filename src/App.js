@@ -20,7 +20,7 @@ function App() {
                   <Route path="/" element={<Landing />} />
                   <Route path="login" element={<Login />} />
                   <Route path="pets" element={<><Nav/><Pets /></>} />
-                  <Route path="pets/pet" element={<><Nav/><PetProfile /></>} />
+                  <Route path="pets/pet/*" element={<><Nav/><PetProfile /></>} />
                   <Route path="account" element={<><Nav/><Account /></>} />
                   <Route path="shelter" element={<><Nav/><Shelter /></>} />
                   <Route path="notification" element={<><Nav/><Notification /></>} />
