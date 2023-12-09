@@ -17,7 +17,7 @@ const Parent = () => {
         </>
       ) : (
         <>
-          <Register />
+          <Register setShowLogin={setShowLogin}/>
           <button onClick={() => setShowLogin(true)} className="toggle-button">
             Go to Login
           </button>
