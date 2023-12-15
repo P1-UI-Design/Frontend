@@ -12,7 +12,7 @@ function Cards({ data }) {
                     description={item.description}
                     age={item.age}
                     gender={item.gender}
-                    imageUrl={"https://placekitten.com/300/200"}
+                    imageUrl={"https://placedog.net/300/200"}
                 />
             ))}
         </div>

@@ -10,11 +10,11 @@ function PetProfile(){
     const imgs = [
         {
             title: 'Pet 2',
-            imageUrl: 'https://placekitten.com/300/200',
+            imageUrl: 'https://placedog.net/400/300',
         },
         {
             title: 'Pet 3',
-            imageUrl: 'https://placekitten.com/300/200',
+            imageUrl: 'https://placedog.net/400/300',
         },
     ];
 
