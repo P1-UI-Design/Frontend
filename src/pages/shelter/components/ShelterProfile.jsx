@@ -1,11 +1,11 @@
 import axios from 'axios';
 import React, {useState} from 'react';
 
-
 const ShelterProfile = () => {
     const [user2Id, setUser2Id] = useState('');
     const [shelterData, setShelterData] = useState(null);
     const [error, setError] = useState('');
+    const [rate, setRate] = useState(0);
 
     let user1Id = 1;
     const viewProfileLoad = {
@@ -16,23 +16,29 @@ const ShelterProfile = () => {
         axios.post(`http://127.0.0.1:8000/accounts/${user1Id}/`, viewProfileLoad)
             .then(response => {
                 setShelterData(response.data.message);
+                setRate(response.data.message.rate);
             })
             .catch(err => {
                 setError(err.message);
             });
     };
 
-    const [rate, setRate] = useState(0);
-
-
     const updateRate = () => {
         const newRate = rate + 1;
-        axios.patch(`http://127.0.0.1:8000/accounts/${user2Id}/`, { rate: newRate })
-            .then(() => {
-                setRate(newRate);
+        const viewRate = {
+            'rate': newRate
+        };
+        axios.patch(`http://127.0.0.1:8000/accounts/${user2Id}/`, viewRate)
+            .then(response => {
+                setRate(response.data.newRate); // Update rate state based on the response
+                handleSubmit(); // Re-fetch the shelter data to update the UI
             })
-            .catch(err => console.error(err));
-    }
+            .catch(err => {
+                console.error(err);
+                setError(err.message);
+            });
+    };
+
 
     return (
         <div>
@@ -56,7 +62,7 @@ const ShelterProfile = () => {
                     <p>Username: {shelterData.username}</p>
                     <p>Role: {shelterData.role}</p>
                     <p>Description: {shelterData.description ? shelterData.description : 'N/A'}</p>
-                    <p>Rate: {shelterData.rate}</p>
+                    <p>Rate: {rate}</p>
                     <button onClick={updateRate}>Like</button>
                 </div>
             )}
