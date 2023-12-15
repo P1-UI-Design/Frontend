@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
+
 
 const ShelterProfile = () => {
     const [user2Id, setUser2Id] = useState('');
@@ -20,6 +21,18 @@ const ShelterProfile = () => {
                 setError(err.message);
             });
     };
+
+    const [rate, setRate] = useState(0);
+
+
+    const updateRate = () => {
+        const newRate = rate + 1;
+        axios.patch(`http://127.0.0.1:8000/accounts/${user2Id}/`, { rate: newRate })
+            .then(() => {
+                setRate(newRate);
+            })
+            .catch(err => console.error(err));
+    }
 
     return (
         <div>
@@ -43,6 +56,8 @@ const ShelterProfile = () => {
                     <p>Username: {shelterData.username}</p>
                     <p>Role: {shelterData.role}</p>
                     <p>Description: {shelterData.description ? shelterData.description : 'N/A'}</p>
+                    <p>Rate: {shelterData.rate}</p>
+                    <button onClick={updateRate}>Like</button>
                 </div>
             )}
             {error && <p>Error: {error}</p>}

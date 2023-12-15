@@ -1,6 +1,5 @@
 import React from 'react';
 import Cards from "./components/Cards";
-import SideBar from "./components/Sidebar";
 import ShelterProfile from "./components/ShelterProfile";
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
@@ -25,7 +24,6 @@ function Shelter(){
             <div className="main-content">
                 <ShelterProfile/>
                 <Cards data={itemsQuery["data"]["data"]["list"]}/>
-                <SideBar/>
             </div>
         </div>
     );
