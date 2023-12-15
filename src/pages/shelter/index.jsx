@@ -1,47 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { ShelterInfo } from './components/shelterInfo';
-import { PetsGrid } from './components/petsGrid';
+import React from 'react';
+import Cards from "./components/Cards";
+import SideBar from "./components/Sidebar";
+import ShelterProfile from "./components/ShelterProfile";
+import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
 
+function Shelter(){
 
+    // const navigate = useNavigate();
 
-const ShelterPage = () => {
-    const [shelterData, setShelterData] = useState({ name: '', description: '' });
-    const [pets, setPets] = useState([]);
+    const itemsQuery = useQuery({
+        queryKey: ["pet-listings"],
+        queryFn: getItems
+    })
 
-    let requestUrl = 'http://127.0.0.1:8000/accounts/' + 1;
-
-    // Function to handle rating submission
-    const onRatingSubmit = (ratingValue) => {
-        console.log('Rating submitted:', ratingValue);
-    };
-
-    // Fetching shelter information
-    useEffect(() => {
-        fetch(requestUrl)
-            .then(response => response.json())
-            .then(data => setShelterData({
-                name: data.name,
-                description: data.description
-            }));
-    }, [requestUrl]);
-
-    // Fetching pets listing
-    useEffect(() => {
-        fetch(requestUrl)
-            .then(response => response.json())
-            .then(data => setPets(data.list));
-    }, [requestUrl]);
+    function getItems(){
+        return axios.get("http://127.0.0.1:8000/pets/").then(res => res.data)
+    }
+    if(itemsQuery.isLoading) return <h1>Loading...</h1>
+    if(itemsQuery.isError) return <h1>Error... Have you started the backend?</h1>
 
     return (
-        <div>
-            <ShelterInfo
-                shelterName={shelterData.name}
-                shelterDescription={shelterData.description}
-                onRatingSubmit={onRatingSubmit}
-            />
-            <PetsGrid pets={pets} />
+        <div className="pets-page">
+            <div className="main-content">
+                <ShelterProfile/>
+                <Cards data={itemsQuery["data"]["data"]["list"]}/>
+                <SideBar/>
+            </div>
         </div>
     );
-};
+}
 
-export default ShelterPage;
+
+
+
+
+export default Shelter;
+

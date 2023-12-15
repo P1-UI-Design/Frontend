@@ -1,11 +1,10 @@
 import React from 'react';
 import './pets-style.css';
 import Cards from "./components/Cards";
-import SideBar from "./components/Sidebar"
+import SideBar from "./components/Sidebar";
 import {useQuery} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
-import {wait} from "@testing-library/user-event/dist/utils";
 
 function Pets() {
     // const handleScroll = () => {
