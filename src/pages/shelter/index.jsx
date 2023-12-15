@@ -23,7 +23,6 @@ function Shelter(){
         <div className="pets-page">
             <div className="main-content">
                 <ShelterProfile/>
-                <Cards data={itemsQuery["data"]["data"]["list"]}/>
             </div>
         </div>
     );
