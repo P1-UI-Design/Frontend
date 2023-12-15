@@ -10,6 +10,7 @@ import Shelter from "./pages/shelter";
 import NotFoundPage from "./pages/404page";
 import Notification from "./pages/notification";
 import PetProfile from "./pages/pet-profile";
+import Applications from "./pages/applications";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
                   <Route path="account" element={<><Nav/><Account /></>} />
                   <Route path="shelter" element={<><Nav/><Shelter /></>} />
                   <Route path="notification" element={<><Nav/><Notification /></>} />
+                  <Route path="applications" element={<><Nav/><Applications /></>} />
                   <Route path="*" element={<NotFoundPage />} />
                   <Route path="404" element={<NotFoundPage />} />
               </Routes>
