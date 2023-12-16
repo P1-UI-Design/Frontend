@@ -1,0 +1,58 @@
+.pet-application-container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+.application-details {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.application-field {
+    margin-bottom: 10px;
+}
+
+.application-field label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+    color: white; /* Set label text color to black */
+}
+
+/* Style for text input fields */
+.application-field input[type="text"],
+.application-field input[type="password"],
+.application-field input[type="email"],
+.application-field textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Larger padding for bigger field */
+    border: 1px solid #e7e7e7;
+    border-radius: 8px; /* Rounded borders */
+    box-sizing: border-box; /* Ensures padding doesn't increase the width */
+    margin-bottom: 10px;
+}
+
+.field-value.status {
+    font-weight: bold;
+    color: green; /* Change the color based on the status */
+}
+
+/* Additional styling for headings and conversation section */
+
+.application-details button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.application-details button:hover {
+    background-color: #0056b3;
+}

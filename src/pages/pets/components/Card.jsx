@@ -1,8 +1,16 @@
 import React from 'react';
+import {useNavigate} from "react-router-dom";
 
-function Card({ title, age, gender, description, imageUrl, onClick, id }) {
+function Card({ title, age, gender, description, imageUrl, id }) {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/pets/" + id.toString());
+    };
+
     return (
-        <a href={"/pets/pet/" + id.toString()} className="card" onClick={onClick}>
+        <a className="card" onClick={handleClick}>
             <img src={imageUrl} alt={title} className="card-image" />
             <div className="card-content">
                 <h2 className="card-title">{title}</h2>

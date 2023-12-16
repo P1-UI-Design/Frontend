@@ -12,20 +12,26 @@ import Notification from "./pages/notification";
 import PetProfile from "./pages/pet-profile";
 import Applications from "./pages/applications";
 import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
+import PetApplication from "./pages/pet-application/PetApplication";
+import ShelterProfile from "./pages/shelter/components/ShelterProfile";
+import ShelterAccount from "./pages/shelter-account/SheltetAccount";
 
 function App() {
 
     const [token, setToken] = useState("");
+    const [Id, setId] = useState("");
 
-  return (
+    return (
       <>
           <BrowserRouter>
               <Routes path="/">
                   <Route path="/" element={<Landing />} />
-                  <Route path="login" element={<Login setToken={setToken}/>} />
-                  <Route path="pets" element={<><Nav/><Pets /></>} />
-                  <Route path="pets/pet/*" element={<><Nav/><PetProfile /></>} />
+                  <Route path="login" element={<Login setToken={setToken} setId={setId}/>} />
+                  <Route path="pets" element={<><Nav/><Pets token={token} Id={Id}/></>} />
+                  <Route path="pets/:id" element={<><Nav/><PetProfile Id={Id}/></>} />
+                  <Route path="pets/:id/application/" element={<><Nav/><PetApplication Id={Id}/></>} />
                   <Route path="account" element={<><Nav/><Account token={token}/></>} />
+                  <Route path="shelter/account" element={<><ShelterAccount token={token}/></>} />
                   <Route path="shelter" element={<><Nav/><Shelter /></>} />
                   <Route path="notification" element={<><Nav/><Notification /></>} />
                   <Route path="applications" element={<><Nav/><Applications /></>} />

@@ -6,7 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 
-function Pets() {
+function Pets({token, Id}) {
     // const handleScroll = () => {
     //     const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
     //     if (bottom)
@@ -17,7 +17,6 @@ function Pets() {
     //     window.addEventListener('scroll', handleScroll, {
     //         passive: true
     //     })});
-
     const petsData = [
         {
             id: 1,

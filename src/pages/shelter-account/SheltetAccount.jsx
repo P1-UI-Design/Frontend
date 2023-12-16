@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './style.css';
 
-function Account({token}) {
+function ShelterAccount({token}) {
     const [Id, setId] = useState("");
     const [applications, setApplications] = useState([]);
 
@@ -10,7 +10,7 @@ function Account({token}) {
         username: '',
         description: '',
         email: '',
-        phone_number: '',
+        phone: '',
         address: '',
         avatar: '',
     });
@@ -19,14 +19,14 @@ function Account({token}) {
     const [editMode, setEditMode] = useState({
         description: false,
         email: false,
-        phone_number: false,
+        phone: false,
         address: false,
         password: false,
     });
     const [newValues, setNewValues] = useState({
         description: '',
         email: '',
-        phone_number: '',
+        phone: '',
         address: '',
         password: '',
         confirmPassword: '',
@@ -174,14 +174,14 @@ function Account({token}) {
                     <div className="profile-info">
                         <h1>{userData.username || "N/A"}</h1>
                         <p>{userData.role || "N/A"}</p>
-                        <p>{userData.description || "N/A"}</p>
+                        <p>{userData.location || "N/A"}</p>
                         <button onClick={triggerFileSelectPopup}>Upload Avatar</button>
                     </div>
                 </div>
                 <div className="profile-body">
                     <div className="profile-details">
                         {/* Repeat the following pattern for each field */}
-                        {["description", "email", "phone_number", "address"].map(field => (
+                        {["description", "email", "phone", "address"].map(field => (
                             <div className="detail" key={field}>
                                 <label>{field.charAt(0).toUpperCase() + field.slice(1)}</label>
                                 {editMode[field] ? (
@@ -248,4 +248,4 @@ function Account({token}) {
     );
 }
 
-export default Account;
+export default ShelterAccount;

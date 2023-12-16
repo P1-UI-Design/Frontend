@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import "./style.css";
 import SlideShow from "./components/SlideShow";
 import Info from "./components/Info";
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
-function PetProfile(){
+function PetProfile({Id}){
+
+    const navigate = useNavigate();
     const id = window.location.href.split("/").pop();
+    const [petData, setPetData] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+
+    const handleAdoptButtonClick = () => {
+        navigate(`application/`);
+    };
+
     const imgs = [
         {
             title: 'Pet 2',
@@ -18,17 +30,23 @@ function PetProfile(){
         },
     ];
 
-    const itemsQuery = useQuery({
-        queryKey: ["pet", id],
-        queryFn: getItems
-    })
+    useEffect(() => {
+        const fetchPetData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await axios.get(`http://127.0.0.1:8000/pets/${id}`);
+                setPetData(response.data.data); // Adjust according to your actual API response
+                setIsLoading(false);
+            } catch (error) {
+                console.error("Error fetching pet details:", error);
+                setError(error);
+                setIsLoading(false);
+            }
+        };
 
-    function getItems(){
-        return axios.get("http://127.0.0.1:8000/pets/"+id).then(res => res.data)
-    }
-    if(itemsQuery.isLoading) return <h1>Loading...</h1>
-    if(itemsQuery.isError) return <h1>Error... Have you started the backend?</h1>
-    console.log(itemsQuery.data["data"])
+        fetchPetData();
+    }, [id]);
+
     return (
         <div className="profile-container">
             <link
@@ -45,10 +63,14 @@ function PetProfile(){
             <div className="slide-container">
                 <SlideShow  data={imgs}/>
             </div>
-            <div className="info-container">
-                <Info pet={itemsQuery.data["data"]}></Info>
-            </div>
-
+            {petData && (
+                <div className="info-container">
+                    <Info pet={petData}></Info>
+                    {(petData.status === 'available' || "available" ) && (
+                        <button onClick={handleAdoptButtonClick}>Adopt Now!</button>
+                    )}
+                </div>
+            )}
         </div>
     );
 }
