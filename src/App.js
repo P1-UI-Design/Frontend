@@ -7,6 +7,7 @@ import Account from './pages/account/index.jsx';
 import Nav from './Navigation.js'
 import './App.css';
 import Shelter from "./pages/shelter";
+import ShelterProfile from './pages/shelter/components/ShelterProfile';
 import NotFoundPage from "./pages/404page";
 import Notification from "./pages/notification";
 import PetProfile from "./pages/pet-profile";
@@ -24,6 +25,7 @@ function App() {
                   <Route path="pets/pet/*" element={<><Nav/><PetProfile /></>} />
                   <Route path="account" element={<><Nav/><Account /></>} />
                   <Route path="shelter" element={<><Nav/><Shelter /></>} />
+                  <Route path="/shelter/:id" element={<ShelterProfile />} />
                   <Route path="notification" element={<><Nav/><Notification /></>} />
                   <Route path="applications" element={<><Nav/><Applications /></>} />
                   <Route path="*" element={<NotFoundPage />} />
