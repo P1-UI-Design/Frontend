@@ -19,8 +19,8 @@ function Nav() {
                 <li className={`nav-item ${location.pathname === '/notification' ? 'active' : ''}`}>
                     <Link to="/notification">Notification</Link>
                 </li>
-                <li className={`nav-item ${location.pathname === '/applications' ? 'active' : ''}`}>
-                    <Link to="/applications">Applications</Link>
+                <li className={`nav-item ${location.pathname === '/favorite' ? 'active' : ''}`}>
+                    <Link to="/favorite">Favorite</Link>
                 </li>
             </ul>
         </nav>

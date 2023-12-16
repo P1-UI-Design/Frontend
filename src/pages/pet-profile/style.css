@@ -33,3 +33,20 @@
     background-color: #0056b3;
 }
 
+
+button.fav {
+    background-color: #ff69b4; /* Pink color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+button.fav:hover {
+    background-color: #ff85c1; /* Lighter pink on hover */
+    transform: scale(1.05);
+}

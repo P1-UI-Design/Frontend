@@ -6,7 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-function PetProfile({Id}){
+function PetProfile({Id, token}){
 
     const navigate = useNavigate();
     const id = window.location.href.split("/").pop();
@@ -18,6 +18,19 @@ function PetProfile({Id}){
     const handleAdoptButtonClick = () => {
         navigate(`application/`);
     };
+
+    const handleFavoriteClick = async () => {
+        try {
+            const response = await axios.post(`http://127.0.0.1:8000/pets/${id}/toggle_favorite/`, {}, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            // You can update the UI based on the response here
+            alert(response.data.status); // Example alert, you might want to handle this differently
+        } catch (error) {
+            console.error("Error toggling favorite status:", error);
+        }
+    };
+
 
     const imgs = [
         {
@@ -69,6 +82,7 @@ function PetProfile({Id}){
                     {(petData.status === 'available') && (
                         <button onClick={handleAdoptButtonClick}>Adopt Now!</button>
                     )}
+                    <button className="fav" onClick={handleFavoriteClick}>Favorite</button>
                 </div>
             )}
         </div>
