@@ -3,7 +3,7 @@ import "./AuthFormStyles.css";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 
-const Login = () => {
+const Login = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -20,6 +20,7 @@ const Login = () => {
             const response = await axios.post('http://127.0.0.1:8000/accounts/login/', loginPayload);
             const accessToken = response.data.access;
             localStorage.setItem('accessToken', accessToken);
+            setToken(accessToken);
             navigate("/pets");
         } catch (error) {
             alert("bruh, username or pass is wrong");
