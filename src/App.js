@@ -15,6 +15,7 @@ import {ReactQueryDevtools} from "@tanstack/react-query-devtools";
 import PetApplication from "./pages/pet-application/PetApplication";
 import ShelterProfile from "./pages/shelter/components/ShelterProfile";
 import ShelterAccount from "./pages/shelter-account/SheltetAccount";
+import NewPet from "./pages/shelter-account/NewPet";
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
                   <Route path="pets/:id/application/" element={<><Nav/><PetApplication Id={Id}/></>} />
                   <Route path="account" element={<><Nav/><Account token={token}/></>} />
                   <Route path="shelter/account" element={<><ShelterAccount token={token}/></>} />
+                  <Route path="newpet" element={<NewPet token={token}/>} />
+
                   <Route path="shelter" element={<><Nav/><Shelter /></>} />
                   <Route path="notification" element={<><Nav/><Notification /></>} />
                   <Route path="applications" element={<><Nav/><Applications /></>} />

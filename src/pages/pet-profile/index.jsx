@@ -66,7 +66,7 @@ function PetProfile({Id}){
             {petData && (
                 <div className="info-container">
                     <Info pet={petData}></Info>
-                    {(petData.status === 'available' || "available" ) && (
+                    {(petData.status === 'available') && (
                         <button onClick={handleAdoptButtonClick}>Adopt Now!</button>
                     )}
                 </div>

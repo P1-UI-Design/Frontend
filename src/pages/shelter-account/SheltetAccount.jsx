@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import './style.css';
+import Cards from "../pets/components/Cards";
+import {Button} from "react-bootstrap";
+import {useNavigate} from "react-router-dom";
 
 function ShelterAccount({token}) {
     const [Id, setId] = useState("");
     const [applications, setApplications] = useState([]);
+    const [pets, setPets] = useState([]);
 
     const [userData, setUserData] = useState({
         username: '',
@@ -60,31 +64,29 @@ function ShelterAccount({token}) {
 
 
     useEffect(() => {
-        // Fetch the current user ID
         const fetchCurrentUserId = async () => {
             try {
                 const response = await axios.get('http://127.0.0.1:8000/accounts/current_user_id/', {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Use the token from props
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
                 const userId = response.data.user_id;
                 setId(userId);
                 fetchAccountDetails(userId);
-                fetchApplications(userId);
+                fetchPets(userId);
             } catch (error) {
                 console.error('Error fetching user ID: ', error);
                 // Handle error here
             }
         };
 
-        // Fetch the account details using the user ID
         const fetchAccountDetails = async (userId) => {
             try {
                 const response = await axios.get(`http://127.0.0.1:8000/accounts/${userId}/`, {
                     headers: {
-                        Authorization: `Bearer ${token}`, // Use the token from props
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
                 setUserData(response.data);
             } catch (error) {
@@ -93,26 +95,23 @@ function ShelterAccount({token}) {
             }
         };
 
-        const fetchApplications = async (userId) => {
+        const fetchPets = async (userId) => {
             try {
-                const response = await axios.get('http://127.0.0.1:8000/applications/', {
-                    params: { id: userId} // Assuming you are sending the user ID as a query parameter
+                const response = await axios.get('http://127.0.0.1:8000/pets/search', {
+                    params: { user_id: userId, status: "all" },
+                    headers: { Authorization: `Bearer ${token}` },
                 });
-                if (response.data.code === 200) {
-                    setApplications(response.data.data.list);
-                } else {
-                    // Handle any non-200 responses here
-                    console.error('Failed to fetch applications:', response.data.message);
-                }
+                setPets(response.data.results); // Assuming 'results' contains the array of pets
             } catch (error) {
-                console.error('Error fetching applications:', error);
+                console.error('Error fetching pets:', error);
             }
         };
 
         if (token) {
             fetchCurrentUserId();
         }
-    }, [token]); // Dependency array ensures useEffect runs when token changes
+    }, [token]);
+
 
     const handleEdit = (field) => {
         setEditMode({ ...editMode, [field]: true });
@@ -162,6 +161,11 @@ function ShelterAccount({token}) {
             // Handle error here
         }
     };
+    const navigate = useNavigate();
+
+    const handleAddPetClick = () => {
+        navigate('/newpet');
+    };
 
 
     return (
@@ -174,7 +178,7 @@ function ShelterAccount({token}) {
                     <div className="profile-info">
                         <h1>{userData.username || "N/A"}</h1>
                         <p>{userData.role || "N/A"}</p>
-                        <p>{userData.location || "N/A"}</p>
+                        <p>{userData.description || "N/A"}</p>
                         <button onClick={triggerFileSelectPopup}>Upload Avatar</button>
                     </div>
                 </div>
@@ -232,17 +236,11 @@ function ShelterAccount({token}) {
                 </div>
                 <input type="file" onChange={handleAvatarChange} style={{ display: 'none' }} id="avatarInput" />
             </div>
-            <div className="applications-container">
-                <h2>Applications</h2>
-                {applications.map(app => (
-                    <div key={app.id} className="application-card">
-                        <h3>Application {app.id}</h3>
-                        <p><strong>Target Pet</strong><br />{app.pet}</p>
-                        <p><strong>Reason for Adoption</strong><br />{app.reason_for_adopting}</p>
-                        <p><strong>Status</strong><br /><span className={`status ${app.approval_status.toLowerCase()}`}>{app.approval_status}</span></p>
-                        <button>Contact Shelter</button>
-                    </div>
-                ))}
+
+            <div className="pets-container">
+                <h2>Pets</h2>
+                <button onClick={handleAddPetClick}>Add</button>
+                <Cards data={pets} nav={"/shelter/pets/"}/>
             </div>
         </>
     );

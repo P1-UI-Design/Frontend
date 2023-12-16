@@ -1,12 +1,12 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom";
 
-function Card({ title, age, gender, description, imageUrl, id }) {
+function Card({ title, age, gender, description, imageUrl, id, nav}) {
 
     const navigate = useNavigate();
 
     const handleClick = () => {
-        navigate("/pets/" + id.toString());
+        navigate(nav);
     };
 
     return (

@@ -71,7 +71,7 @@ function Pets({token, Id}) {
     return (
         <div className="pets-page">
             <div className="main-content">
-                <Cards data={itemsQuery["data"]["data"]["list"]}/>
+                <Cards data={itemsQuery["data"]["data"]["list"]} nav={"/pets/"}/>
                 <SideBar/>
             </div>
         </div>
